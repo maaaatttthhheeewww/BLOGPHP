@@ -8,7 +8,7 @@ use App\Http\Controllers\BlogController;
 
 Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
 
-Route::get('/blogs/create', [BlogController::class, 'create']);
+Route::get('/blogs/create', [BlogController::class, 'create'])->name('BlogCreateRoute');
 
 
 Route::get('/', function () {

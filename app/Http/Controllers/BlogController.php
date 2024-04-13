@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+
 
 
 class BlogController extends Controller
@@ -37,7 +40,6 @@ class BlogController extends Controller
      * Store a newly created blog in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -59,7 +61,7 @@ class BlogController extends Controller
         $blog->save();
 
         // Redirect back to the blog index page with a success message
-        return redirect()->intended(route('dashboard', absolute: false));
+        Log::debug('Reached the redirection'); // Log a debug message
     }
 
     // Other methods like show(), edit(), update(), delete() can be added here as needed

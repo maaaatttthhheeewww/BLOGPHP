@@ -55,6 +55,8 @@
         formData.value.content = '';
         formData.value.published = false;
         alert('Blog post created successfully!');
+        window.location.href = '/dashboard'; // Replace with the actual URL of your dashboard page
+
       })
       .catch(error => {
         console.error(error);
@@ -63,9 +65,7 @@
   };
   </script>
   
-  <style scoped>
-  /* Component-specific styles */
-  
+  <style scoped>  
   /* Container styles */
   .container {
     min-height: 80vh;
