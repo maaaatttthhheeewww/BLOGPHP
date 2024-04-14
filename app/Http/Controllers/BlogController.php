@@ -23,7 +23,13 @@ class BlogController extends Controller
         // Fetch all published blogs
         $blogs = Blog::where('published', true)->orderBy('created_at', 'desc')->get();
 
-        return view('blogs.index', compact('blogs'));
+        // Return the fetched blogs as JSON data
+        return response()->json($blogs);
+    }
+    public function authored()
+    {
+        $blogs = Blog::where('user_id', Auth::id())->get();
+        return Inertia::render('MyBlogs', ['blogs' => $blogs]);
     }
 
     /**
@@ -66,4 +72,3 @@ class BlogController extends Controller
 
     // Other methods like show(), edit(), update(), delete() can be added here as needed
 }
-

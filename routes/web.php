@@ -3,10 +3,14 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Http\Controllers\BlogController;
+use App\Models\Blog;
 
 Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
+Route::get('/blogs/authored', [BlogController::class, 'authored'])->name('blogs.show');
+
 
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('BlogCreateRoute');
 
