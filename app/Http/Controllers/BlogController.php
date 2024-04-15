@@ -13,19 +13,19 @@ use Inertia\Inertia;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the blogs.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        // Fetch all published blogs
-        $blogs = Blog::where('published', true)->orderBy('created_at', 'desc')->get();
+    // /**
+    //  * Display a listing of the blogs.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function index()
+    // {
+    //     // Fetch all published blogs
+    //     $blogs = Blog::where('published', true)->orderBy('created_at', 'desc')->get();
 
-        // Return the fetched blogs as JSON data
-        return response()->json($blogs);
-    }
+    //     // Return the fetched blogs as JSON data
+    //     return response()->json($blogs);
+    // }
     public function authored()
     {
         $blogs = Blog::where('user_id', Auth::id())->get();
@@ -70,5 +70,12 @@ class BlogController extends Controller
         Log::debug('Reached the redirection'); // Log a debug message
     }
 
-    // Other methods like show(), edit(), update(), delete() can be added here as needed
+    public function destroy($id)
+    {
+        // Find the blog by its ID and ensure it belongs to the authenticated user
+        $blog = Blog::where('user_id', Auth::id())->findOrFail($id);
+        
+        // Delete the blog
+        $blog->delete();
+    }
 }

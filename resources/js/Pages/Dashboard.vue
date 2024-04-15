@@ -17,8 +17,13 @@ import { Head } from '@inertiajs/vue3';
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">You're logged in!</div>
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <button @click="navigateToCreateBlog" class="text-blue-500 hover:text-blue-700">Create a
+                        <button @click="navigateToRoute('BlogCreateRoute')"
+                            class="text-blue-500 hover:text-blue-700">Create a
                             Blog</button>
+                    </div>
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <button @click="navigateToRoute('MyBlogs')" class="text-blue-500 hover:text-blue-700">See Your
+                            Blogs</button>
                     </div>
                 </div>
             </div>
@@ -26,7 +31,7 @@ import { Head } from '@inertiajs/vue3';
     </AuthenticatedLayout>
 </template>
 <script>
-const navigateToCreateBlog = () => {
-    window.location.href = route('BlogCreateRoute');
+const navigateToRoute = (routeName) => {
+    window.location.href = route(routeName);
 }
 </script>

@@ -9,8 +9,9 @@ use App\Http\Controllers\BlogController;
 use App\Models\Blog;
 
 Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
-Route::get('/blogs/authored', [BlogController::class, 'authored'])->name('blogs.show');
+Route::get('/blogs/authored', [BlogController::class, 'authored'])->name('MyBlogs');
 
+Route::delete('/blogs/authored/{id}', [BlogController::class, 'destroy'])->name('DestroyBlog');
 
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('BlogCreateRoute');
 
