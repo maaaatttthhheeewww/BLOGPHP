@@ -3,13 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Http\Controllers\BlogController;
-use App\Models\Blog;
 
-Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
+Route::post('/blogs', [BlogController::class, 'store']);
 Route::get('/blogs/authored', [BlogController::class, 'authored'])->name('MyBlogs');
+Route::get('/blogs/published', [BlogController::class, 'index'])->name('PublishedBlogs');
+
 
 Route::delete('/blogs/authored/{id}', [BlogController::class, 'destroy'])->name('DestroyBlog');
 Route::patch('/blogs/authored/{id}', [BlogController::class, 'update'])->name('UpdateBlog');

@@ -13,19 +13,19 @@ use Inertia\Inertia;
 
 class BlogController extends Controller
 {
-    // /**
-    //  * Display a listing of the blogs.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function index()
-    // {
-    //     // Fetch all published blogs
-    //     $blogs = Blog::where('published', true)->orderBy('created_at', 'desc')->get();
+    /**
+     * Display a listing of the blogs.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        // Retrieve published blogs with their associated users, ordered by creation date
+        $blogs = Blog::with('user')->where('published', true)->orderByDesc('created_at')->get();
+        // Pass the blogs to the view
+        return Inertia::render('PublishedBlogs', ['blogs' => $blogs]);
 
-    //     // Return the fetched blogs as JSON data
-    //     return response()->json($blogs);
-    // }
+    }
     public function authored()
     {
         $blogs = Blog::where('user_id', Auth::id())->get();
@@ -58,7 +58,7 @@ class BlogController extends Controller
         $blog->title = $request->title;
         $blog->content = $request->content;
         $blog->published = $request->has('published') ? true : false;
-        $blog->user_id = Auth::id(); 
+        $blog->user_id = Auth::id();
 
         $blog->save();
     }
@@ -66,11 +66,11 @@ class BlogController extends Controller
     public function destroy($id)
     {
         $blog = Blog::where('user_id', Auth::id())->findOrFail($id);
-        
+
         $blog->delete();
     }
 
-     /**
+    /**
      * Update the specified blog post.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -86,6 +86,5 @@ class BlogController extends Controller
             'title' => $request->input('title'),
             'content' => $request->input('content'),
         ]);
-
     }
 }
