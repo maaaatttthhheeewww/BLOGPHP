@@ -49,33 +49,43 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request data
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'published' => 'boolean',
         ]);
-
-        // Create a new blog instance
         $blog = new Blog;
         $blog->title = $request->title;
         $blog->content = $request->content;
         $blog->published = $request->has('published') ? true : false;
-        $blog->user_id = Auth::id(); // Assign the currently logged-in user as the author
+        $blog->user_id = Auth::id(); 
 
-        // Save the blog to the database
         $blog->save();
-
-        // Redirect back to the blog index page with a success message
-        Log::debug('Reached the redirection'); // Log a debug message
     }
 
     public function destroy($id)
     {
-        // Find the blog by its ID and ensure it belongs to the authenticated user
         $blog = Blog::where('user_id', Auth::id())->findOrFail($id);
         
-        // Delete the blog
         $blog->delete();
+    }
+
+     /**
+     * Update the specified blog post.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        $blog = Blog::findOrFail($id);
+
+        $blog->update([
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+        ]);
+
     }
 }

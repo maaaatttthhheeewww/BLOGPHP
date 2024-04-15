@@ -55,7 +55,7 @@
         formData.value.content = '';
         formData.value.published = false;
         alert('Blog post created successfully!');
-        window.location.href = '/dashboard'; // Replace with the actual URL of your dashboard page
+        window.location.href = '/dashboard'; 
 
       })
       .catch(error => {
