@@ -25,6 +25,11 @@ import { Head } from '@inertiajs/vue3';
                         <button @click="navigateToRoute('MyBlogs')" class="text-blue-500 hover:text-blue-700">See Your
                             Blogs</button>
                     </div>
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <button @click="navigateToRoute('PublishedBlogs')" class="text-blue-500 hover:text-blue-700">See
+                            All
+                            Published Blogs</button>
+                    </div>
                 </div>
             </div>
         </div>
