@@ -57,7 +57,7 @@ class BlogController extends Controller
         $blog = new Blog;
         $blog->title = $request->title;
         $blog->content = $request->content;
-        $blog->published = $request->has('published') ? true : false;
+        $blog->published = $request->published;
         $blog->user_id = Auth::id();
 
         $blog->save();
@@ -85,6 +85,7 @@ class BlogController extends Controller
         $blog->update([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
+            'published' => $request->input('published'),
         ]);
     }
 }

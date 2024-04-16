@@ -29,6 +29,7 @@ import { Head } from '@inertiajs/vue3';
                             class="edit-title mb-2 block w-full dark:bg-gray-700" />
                         <textarea v-model="blog.editedContent"
                             class="edit-content mb-2 block w-full dark:bg-gray-700"></textarea>
+                        <input v-model="blog.editedPublished" type="checkbox" class="edit-published" />
                         <div class="flex justify-end">
                             <button @click="saveChanges(blog)" class="save-button mr-2">Save</button>
                             <button @click="cancelEditing(blog)" class="cancel-button">Cancel</button>
@@ -59,11 +60,13 @@ export default {
             blog.editing = !blog.editing;
             blog.editedTitle = blog.title;
             blog.editedContent = blog.content;
+            blog.editedPublished = blog.published;
         },
         saveChanges(blog) {
             const data = {
                 title: blog.editedTitle,
-                content: blog.editedContent
+                content: blog.editedContent,
+                published: blog.editedPublished
             };
             this.$inertia.patch(route('UpdateBlog', blog.id), data)
                 .then(() => {
