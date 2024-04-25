@@ -18,6 +18,7 @@
                   <label for="content" class="form-label text-white">Content:</label>
                   <textarea id="content" class="form-control wide" v-model="formData.content" rows="10"
                     placeholder="Write your blog post here..." required></textarea>
+                  <!-- <VMarkdownEditor id="content" v-model="formData.content" required/> -->
                 </div>
                 <div class="form-check mb-3">
                   <input type="checkbox" id="published" class="form-check-input" v-model="formData.published">
@@ -34,6 +35,8 @@
 </template>
 
 <script setup>
+import { VMarkdownEditor } from 'vue3-markdown'
+import 'vue3-markdown/dist/style.css'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { ref } from 'vue';
 import axios from 'axios';

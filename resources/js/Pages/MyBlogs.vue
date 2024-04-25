@@ -16,10 +16,14 @@ import { Head } from '@inertiajs/vue3';
                         <p class="text-gray-600 dark:text-gray-400">{{ blog.content }}</p>
                         <p class="text-gray-500 dark:text-gray-400 mt-2 text-sm">{{ new
                             Date(blog.created_at).toLocaleString() }}</p>
+                        <p class="text-sm mt-2"
+                            :class="{ 'text-green-500': blog.published, 'text-red-500': !blog.published }">
+                            {{ blog.published ? 'Published' : 'Unpublished' }}
+                        </p>
                         <div class="flex justify-end mt-4">
-                            <button @click="toggleEditing(blog)" class="edit-button">Edit</button>
+                            <button @click="toggleEditing(blog)" class="text-gray-600 dark:text-gray-600 dark:hover:text-gray-400">Edit</button>
                             <button @click="deleteBlog(blog.id)"
-                                class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                class="ml-2 text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
                                 Delete
                             </button>
                         </div>

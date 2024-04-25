@@ -1,4 +1,6 @@
 <script setup>
+import { VMarkdownView } from 'vue3-markdown'
+import 'vue3-markdown/dist/style.css'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 </script>
@@ -14,6 +16,7 @@ import { Head } from '@inertiajs/vue3';
                     <div v-if="!blog.editing" class="p-6">
                         <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-200 mb-2">{{ blog.title }}</h2>
                         <p class="text-gray-600 dark:text-gray-400">{{ blog.content }}</p>
+                        <!-- <VMarkdownView :content="blog.content" /> -->
                         <p class="text-gray-500 dark:text-gray-400 mt-2 text-sm">{{ new
                             Date(blog.created_at).toLocaleString() }}</p>
                         <p class="text-gray-500 dark:text-gray-400 mt-2 text-sm">{{ blog.user.name }}</p>
@@ -37,6 +40,9 @@ export default {
         sortedBlogs() {
             return this.blogs.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         },
+    },
+    components: {
+        VMarkdownView
     }
 };
 </script>
