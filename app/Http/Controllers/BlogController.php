@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +20,6 @@ class BlogController extends Controller
     {
         // Retrieve published blogs with their associated users, ordered by creation date
         $blogs = Blog::with('user')->where('published', true)->orderByDesc('created_at')->get();
-        // Pass the blogs to the view
         return Inertia::render('PublishedBlogs', ['blogs' => $blogs]);
 
     }

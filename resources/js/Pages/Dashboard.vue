@@ -15,7 +15,6 @@ import { Head } from '@inertiajs/vue3';
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Create Blog Card -->
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
                         <button @click="navigateToRoute('BlogCreateRoute')"
                             class="flex items-center space-x-2 text-blue-500 hover:text-blue-700">
